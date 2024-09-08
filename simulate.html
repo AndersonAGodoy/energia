@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Simule sua economia com energia solar. Descubra quanto você pode economizar usando uma solução de energia limpa e sustentável.">
+  <meta name="keywords" content="simulação de economia, energia solar, economia de energia, sustentabilidade">
+  <title>Simulação de Economia | Energia Solar Fácil</title>
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Definindo a altura mínima do body e flexbox para a estrutura da página */
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+    }
+
+    main {
+      flex: 1;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 font-sans">
+
+  <!-- Navbar -->
+  <header class="bg-blue-900 text-white p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="text-2xl font-bold">Energia Solar Fácil</div>
+      <button class="bg-green-500 hover:bg-green-600 transition-colors text-white px-4 py-2 rounded"> <a href="/index.html">Voltar ao Início</a></button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Simulação de Economia -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-6 text-center">
+        <h2 class="text-3xl font-bold mb-8">Simule Sua Economia com Energia Solar</h2>
+        <p class="text-lg text-gray-700 mb-12">Insira o valor médio da sua conta de luz para descobrir quanto você pode economizar usando nossa solução de energia solar sem instalação.</p>
+
+        <!-- Formulário de Simulação -->
+        <div class="max-w-md mx-auto">
+          <form id="simulationForm" class="bg-gray-100 p-6 rounded-lg shadow-lg">
+            <label for="energyBill" class="block text-left text-gray-600 font-semibold mb-2">Valor da Conta de Luz (R$):</label>
+            <input type="number" id="energyBill" class="w-full border border-gray-300 p-3 rounded-md mb-4" placeholder="Ex: 250" required>
+            <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white py-3 px-6 rounded-md transition-colors">Calcular Economia</button>
+          </form>
+
+          <!-- Resultado da Simulação -->
+          <div id="result" class="mt-8 hidden">
+            <h3 class="text-2xl font-bold text-green-500">Sua Economia Estimada:</h3>
+            <p id="savings" class="text-lg text-gray-700 mt-4"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-blue-900 text-white py-6">
+    <div class="container mx-auto text-center">
+      <p>&copy; 2024 Energia Solar Fácil. Todos os direitos reservados.</p>
+      <p>Entre em contato: contato@energiasolarfacil.com | Telefone: (11) 98765-4321</p>
+    </div>
+  </footer>
+
+  <!-- Script para Simulação -->
+  <script>
+    document.getElementById('simulationForm').addEventListener('submit', function (event) {
+      event.preventDefault(); // Previne o envio do formulário
+
+      const energyBill = document.getElementById('energyBill').value;
+      const savings = (energyBill * 0.30); // Calcula 30% de economia
+      const difference = (energyBill - savings);
+
+      const formattedSavingsValue = Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(savings)
+      const formattedDifferenceValue = Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(difference)
+
+      document.getElementById('result').classList.remove('hidden');
+      document.getElementById('savings').innerText = `Você pode economizar aproximadamente R$ ${formattedSavingsValue}, e passar a pagar: R$ ${formattedDifferenceValue} por mês!`;
+    });
+  </script>
+</body>
+
+</html>
